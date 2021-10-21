@@ -1,0 +1,191 @@
+﻿@*@using X.PagedList;
+    @using X.PagedList.Mvc.Core;*@
+
+
+@using Test_AdminPanel.Models
+
+@model List<User>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<h2 style="text-align:center"> User List</h2>
+
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Users</h3>
+
+                </div>
+                <div class="col-sm-6">
+                    @*Bookmark Start*@
+                    <div class="bookmark">
+                        <ul>
+                            <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="inbox"></i></a></li>
+                            <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Chat"><i data-feather="message-square"></i></a></li>
+                            <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Icons"><i data-feather="command"></i></a></li>
+                            <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Learning"><i data-feather="layers"></i></a></li>
+                            <li>
+                                <a href="javascript:void(0)"><i class="bookmark-search" data-feather="star"></i></a>
+                                <form class="form-inline search-form">
+                                    <div class="form-group form-control-search">
+                                        <input type="text" placeholder="Search..">
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    @*Bookmark Ends*@
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Container-fluid starts*@
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h5>ADY</h5><span>User List</span>
+                    </div>
+                    <div class="card-body">
+                        <div style="position: relative; height: auto; width: 100%;">
+                            <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                                <table id="example" class="table table-striped" style="padding-left:30%">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>FirstName</th>
+                                            <th>LastName</th>
+                                            <th>FatherName</th>
+                                            <th>UserName</th>
+                                            <th>UserPassword</th>
+                                            <th>StationID</th>
+                                            <th>KassaID</th>
+                                            <th>UserCreateDate</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var user in Model)
+                                        {
+                                            <tr>
+                                                <td>@user.UserID</td>
+                                                <td>@user.UserFirstName</td>
+                                                <td>@user.UserLastName</td>
+                                                <td>@user.UserFatherName</td>
+                                                <td>@user.UserName</td>
+                                                <td>@user.UserPassword</td>
+                                                <td>@user.StationID</td>
+                                                <td>@user.KassaID</td>
+
+                                                <td>@user.UserCreateDate</td>
+                                                <td>@Html.ActionLink("Edit", "Edit", "User", new { Id = user.UserID }, new { @class = "btn btn-primary" })</td>
+                                                <td><a class="btn btn-warning" href="@Url.Action("UserDelete", "User", new { Id = user.UserID})">Delete</a> </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                                @*@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))*@
+                            </div>
+                            <div class="jsgrid-grid-body">
+                                <table class="jsgrid-table">
+                                    <tbody>
+                                        <tr class="jsgrid-edit-row">
+                                            <td class="jsgrid-cell" style="width: 30px;">
+                                                <input type="number" disabled>
+                                            </td>
+                                            <td class="jsgrid-cell" style="width: 60px;">
+                                                <input type="text">
+                                            </td>
+                                            <td class="jsgrid-cell" style="width: 60px;">
+                                                <input type="text">
+                                            </td>
+                                            <td class="jsgrid-cell" style="width: 60px;">
+                                                <input type="text">
+                                            </td>
+                                            <td class="jsgrid-cell" style="width: 60px;">
+                                                <input type="text">
+                                            </td>
+                                            <td class="jsgrid-cell jsgrid-align-right" style="width: 60px;">
+                                                <input type="text">
+                                            </td>
+                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
+                                                <select>
+                                                    <option value="0">Baki</option>
+                                                    <option value="1">Gəncə</option>
+                                                    <option value="2">Sumqayıt</option>
+                                                    <option value="2">Xırdalan</option>
+
+                                                </select>
+                                            </td>
+                                            <td class="jsgrid-cell jsgrid-align-right" style="width: 60px;">
+                                                <input type="number">
+                                            </td>
+
+                                            <td class="jsgrid-cell jsgrid-align-right" style="width: 60px;">
+                                                <input type="date">
+                                            </td>
+
+
+
+                                            <form method="get" asp-action="IndexS" asp-controller="Main">
+
+                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 100px;">
+
+                                                    <input type="search" placeholder="Search ..." value="@ViewData["GetEmployeedetails"]" name="Empsearch" />
+
+                                                </td>
+
+                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 60px;">
+
+                                                    <input class="btn btn-primary" type="submit" value="Search" />
+
+                                                </td>
+                                            </form>
+
+
+                                            <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 60px;">
+
+                                                <a class="btn btn-success" href="/User/Index">New User</a>
+                                            </td>
+
+                                            <!--a asp-action="Index">Get All Users</a>-->
+
+
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="jsgrid-pager-container" style="">
+                                <!--Search-->
+                            </div>
+                            <div class="jsgrid-load-shader" style="display: none; position: absolute; inset: 0px; z-index: 1000;"></div>
+                            <div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="card">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @*Container-fluid Ends*@
+</div>

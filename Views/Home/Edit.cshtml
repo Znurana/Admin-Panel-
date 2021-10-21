@@ -1,0 +1,86 @@
+﻿@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+@addTagHelper *, AuthoringTagHelpers
+@model Test_AdminPanel.Models.User
+
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link href="~/DataTable/DataTables-1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/site.css" />
+
+<form asp-controller="Home" asp-action="save" method="post">
+    <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>FatherName</th>
+                <th>UserName</th>
+                <th>UserPassword</th>
+                <th>StationID</th>
+                <th>KassaID</th>
+                <th>UserCreateDate</th>
+                <th>Edit</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+
+                <input asp-for="UserID" class="form-control" type="hidden" placeholder="userId" />
+
+                <td>
+                    <input asp-for="UserFirstName" class="form-control" type="text" placeholder="UserFirstName" />
+
+                </td>
+
+                <td>
+                    <input asp-for="UserLastName" class="form-control" type="text" placeholder="UserLastName" />
+
+                </td>
+                <td>
+                    <input asp-for="UserFatherName" class="form-control" type="text" placeholder="UserFatherName" />
+
+                </td>
+                <td>
+                    <input asp-for="UserName" class="form-control" type="text" placeholder="UserName" />
+                    <span asp-validation-for="UserName" class="input-group-text"></span>
+                </td>
+                <td>
+                    <input asp-for="UserPassword" class="form-control" type="text" placeholder="UserPassword" />
+                    <span asp-validation-for="UserPassword" class="input-group-text"></span>
+                </td>
+                <td>
+                    <input asp-for="station.StationID" class="form-control" type="number" placeholder="StationID" />
+
+                </td>
+                <td>
+                    <input asp-for="kassa.KassaID" class="form-control" type="number" placeholder="KassaID" />
+
+                </td>
+                <td>
+                    <input asp-for="UserCreateDate" class="form-control" type="date" />
+                </td>
+
+                <td>
+                    <button class="btn btn-outline-success" type="submit">Save</button>
+                </td>
+
+
+
+        </tbody>
+    </table>
+</form>
+
+
+
+
+
+
+
+

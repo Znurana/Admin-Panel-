@@ -1,0 +1,70 @@
+﻿@using Test_AdminPanel.Models
+
+@model List<User>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<a class="btn btn-success" href="/Home/New">Add new User</a>
+
+<h2 style="text-align:center"> User List</h2>
+<form method="get"asp-action="Index" asp-controller="Home">
+    <p>
+        
+        <input type="search" placeholder="Enter first name" value="@ViewData["GetEmployeedetails"]" name="Empsearch" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-action="Index">Get All Users</a>
+    </p>
+</form>
+
+
+
+
+<table id="example" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>FatherName</th>
+            <th>UserName</th>
+            <th>UserPassword</th>
+            <th>StationID</th>
+            <th>KassaID</th>
+            <th>UserCreateDate</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserID</td>
+                <td>@user.UserFirstName</td>
+                <td>@user.UserLastName</td>
+                <td>@user.UserFatherName</td>
+                <td>@user.UserName</td>
+                <td>@user.UserPassword</td>
+                <td>@user.station</td>
+                <td>@user.KassaID</td>
+                <td>@user.UserCreateDate</td>
+
+
+                <td>@Html.ActionLink("Edit", "Edit", "Home", new { Id = user.UserID }, new { @class = "btn btn-primary" })</td>
+                <td><a class="btn btn-warning" href="@Url.Action("Delete", "Home", new { Id = user.UserID})">Delete</a> </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+
+

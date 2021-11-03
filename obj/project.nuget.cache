@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/F/jvv/ZQaWquCE5z4So978s43exa41VKQwAsAgTvGQec+tgZ19w+F+bnhRUUDwZb+sek+kcbEgQNYXbjgXBeA==",
+  "dgSpecHash": "kxjL+w9IaufvpUVRI+V+xPTywCJlz5WcKovxKCOQN8LEeRZpkQTjRgzGT1I+1BS1DcbXCWeJTS68b+OvJP545w==",
   "success": true,
   "projectFilePath": "D:\\repos\\Test_AdminPanel\\Test_AdminPanel.csproj",
   "expectedPackageFiles": [
@@ -12,9 +12,10 @@
     "C:\\Users\\Nurana\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.3\\fluentvalidation.dependencyinjectionextensions.10.3.3.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\jetbrains.annotations\\2021.1.0\\jetbrains.annotations.2021.1.0.nupkg.sha512",
-    "C:\\Users\\Nurana\\.nuget\\packages\\jquery\\1.4.4\\jquery.1.4.4.nupkg.sha512",
+    "C:\\Users\\Nurana\\.nuget\\packages\\jquery\\1.8.0\\jquery.1.8.0.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\jquery.validation\\1.19.3\\jquery.validation.1.19.3.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\jquery.validation.unobtrusive\\2.0.20710\\jquery.validation.unobtrusive.2.0.20710.nupkg.sha512",
+    "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.aspnet.identity.core\\2.2.3\\microsoft.aspnet.identity.core.2.2.3.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
@@ -30,6 +31,8 @@
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.2.0\\microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+    "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.aspnetcore.identity\\2.2.0\\microsoft.aspnetcore.identity.2.2.0.nupkg.sha512",
+    "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.11\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.11.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\5.0.11\\microsoft.aspnetcore.identity.ui.5.0.11.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\5.0.0\\microsoft.aspnetcore.razor.language.5.0.0.nupkg.sha512",
@@ -76,6 +79,7 @@
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.8.0\\microsoft.identitymodel.protocols.6.8.0.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.8.0\\microsoft.identitymodel.protocols.openidconnect.6.8.0.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
+    "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.jquery.unobtrusive.ajax\\3.2.6\\microsoft.jquery.unobtrusive.ajax.3.2.6.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.jquery.unobtrusive.validation\\2.0.20710\\microsoft.jquery.unobtrusive.validation.2.0.20710.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.net.compilers\\3.11.0\\microsoft.net.compilers.3.11.0.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
@@ -100,6 +104,8 @@
     "C:\\Users\\Nurana\\.nuget\\packages\\optivem.atomiv.core.common\\1.0.33\\optivem.atomiv.core.common.1.0.33.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\optivem.atomiv.core.domain\\1.0.33\\optivem.atomiv.core.domain.1.0.33.nupkg.sha512",
     "C:\\Users\\Nurana\\.nuget\\packages\\optivem.atomiv.infrastructure.fluentvalidation\\1.0.33\\optivem.atomiv.infrastructure.fluentvalidation.1.0.33.nupkg.sha512",
+    "C:\\Users\\Nurana\\.nuget\\packages\\pagedlist\\1.17.0\\pagedlist.1.17.0.nupkg.sha512",
+    "C:\\Users\\Nurana\\.nuget\\packages\\pagedlist.mvc\\4.5.0\\pagedlist.mvc.4.5.0.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -218,6 +224,36 @@
       "warningLevel": 1,
       "message": "jQuery.Validation.Unobtrusive 2.0.20710 depends on Microsoft.jQuery.Unobtrusive.Validation (>= 2.0.20613) but Microsoft.jQuery.Unobtrusive.Validation 2.0.20613 was not found. An approximate best match of Microsoft.jQuery.Unobtrusive.Validation 2.0.20710 was resolved.",
       "libraryId": "Microsoft.jQuery.Unobtrusive.Validation",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.Identity.Core 2.2.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.Identity.Core",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'PagedList 1.17.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "PagedList",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'PagedList.Mvc 4.5.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "PagedList.Mvc",
       "targetGraphs": [
         "net5.0"
       ]

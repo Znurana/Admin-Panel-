@@ -8,23 +8,15 @@ using System.Threading.Tasks;
 
 namespace Test_AdminPanel.Models.VM
 {
-    public class UserFileVM
+    public class UserFileVM : EditImageViewModel
     {
         public int UserID { get; set; }
-
         public string UserFirstName { get; set; }
-
-
         public string UserLastName { get; set; }
-
-
         public string UserFatherName { get; set; }
-
-
+        public DateTime BirthdayDate { get; set; }
         public string UserName { get; set; }
-
         public string UserPassword { get; set; }
-
         public int StationID { get; set; }
         public virtual Station station { get; set; }
 
@@ -33,13 +25,11 @@ namespace Test_AdminPanel.Models.VM
         public int KassaID { get; set; }
         public Kassa kassa { get; set; }
 
-        
         public DateTime UserCreateDate { get; set; } = DateTime.Now;
 
 
         [Display(Name = "Profile Picture")]
         public IFormFile ProfileImage { get; set; }
-
-
+       
     }
 }

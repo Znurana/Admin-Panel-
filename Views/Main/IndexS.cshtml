@@ -2,10 +2,9 @@
     @using X.PagedList.Mvc.Core;*@
 
 
-@using Test_AdminPanel.Models
 
-@model List<User>
-
+@*@model PaginatedList<Test_AdminPanel.Models.User>*@
+@model IEnumerable<Test_AdminPanel.Models.User>
 
 
 @{
@@ -13,7 +12,23 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<head>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</head>
+<style>
 
+    .imggallery {
+        height: 50px;
+        width: 50px;
+        -webkit-transition: all .4s ease-in;
+    }
+
+        .imggallery:hover {
+            height: 130px;
+            width: 130px;
+        }
+</style>
 
 <h2 style="text-align:center"> User List</h2>
 
@@ -62,41 +77,100 @@
                                 <table id="example" class="table table-striped" style="padding-left:30%">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>FirstName</th>
-                                            <th>LastName</th>
-                                            <th>FatherName</th>
-                                            <th>UserName</th>
-                                            <th>UserPassword</th>
-                                            <th>StationID</th>
-                                            <th>KassaID</th>
-                                            <th>UserCreateDate</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th>Şəkil</th>
+                                            <th>Ad</th>
+                                            <th>Soyad</th>
+                                            <th>Ata adı</th>
+                                            <th>Doğum tarixi</th>
+                                            <th>İstifadəçi adı</th>
+                                            <th>İstifadəçi şifrə</th>
+                                            <th>Stansiya adı</th>
+                                            <th>Kassa nömrəsi</th>
+                                            <th>İstifadəçi yaranma tarixi</th>
+
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                if (User.IsInRole("Admin"))
+                                                {
+                                                    <th>Düzəliş et</th>
+
+                                                }
+
+                                            }
+
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                if (User.IsInRole("Delete") || User.IsInRole("Admin"))
+                                                {
+                                                    <th>Sil</th>
+
+                                                }
+
+                                            }
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var user in Model)
                                         {
                                             <tr>
-                                                <td>@user.UserID</td>
+                                                <td>
+                                                    @user.UserID
+
+                                                    <img src="~/images/@user.ProfilePicture"
+                                                         class="rounded-circle  imggallery"
+                                                          asp-append-version="true" />
+
+                                                </td>
                                                 <td>@user.UserFirstName</td>
                                                 <td>@user.UserLastName</td>
                                                 <td>@user.UserFatherName</td>
+                                                <td>@user.BirthdayDate</td>
                                                 <td>@user.UserName</td>
                                                 <td>@user.UserPassword</td>
                                                 <td>@user.StationID</td>
                                                 <td>@user.KassaID</td>
-
                                                 <td>@user.UserCreateDate</td>
-                                                <td>@Html.ActionLink("Edit", "Edit", "User", new { Id = user.UserID }, new { @class = "btn btn-primary" })</td>
-                                                <td><a class="btn btn-warning" href="@Url.Action("UserDelete", "User", new { Id = user.UserID})">Delete</a> </td>
+                                                <td>
+                                                    @if (User.Identity.IsAuthenticated)
+                                                    {
+                                                        if (User.IsInRole("Admin"))
+                                                        {
+
+                                                            <a id="btn1" class="btn btn-primary" href="@Url.Action("Edit", "User", new { Id = user.UserID})">Edit</a>
+                                                        }
+
+                                                    }
+                                                </td>
+
+                                                <td>
+                                                    @if (User.Identity.IsAuthenticated)
+                                                    {
+                                                        if (User.IsInRole("Delete") || User.IsInRole("Admin"))
+                                                        {
+
+                                                            <span id="confirmDeleteSpan_@user.UserID" style="display:none">
+                                                                <span><b>Silmək istədiyinizə əminsiniz?</b></span>
+                                                                <a id="btn1" class="btn btn-danger" href="@Url.Action("UserDelete", "User", new { Id = user.UserID})">Yes</a>
+                                                                <a href="#" class="btn btn-primary"
+                                                                   onclick="confirmDelete('@user.UserID', false)">No</a>
+                                                            </span>
+
+                                                            <span id="deleteSpan_@user.UserID">
+                                                                <a href="#" class="btn btn-danger"
+                                                                   onclick="confirmDelete('@user.UserID', true)">Delete</a>
+                                                            </span>
+
+                                                        }
+
+                                                    }
+
+                                                </td>
                                             </tr>
                                         }
 
                                     </tbody>
                                 </table>
-                                @*@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))*@
+
                             </div>
                             <div class="jsgrid-grid-body">
                                 <table class="jsgrid-table">
@@ -156,21 +230,54 @@
 
 
                                             <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 60px;">
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    if (User.IsInRole("Admin"))
+                                                    {
+                                                        <a class="btn btn-success" href="/User/Index">New User</a>
+                                                    }
 
-                                                <a class="btn btn-success" href="/User/Index">New User</a>
+                                                }
+
+
                                             </td>
-
-                                            <!--a asp-action="Index">Get All Users</a>-->
-
-
-
 
 
                                     </tbody>
                                 </table>
                             </div>
+
                             <div class="jsgrid-pager-container" style="">
-                                <!--Search-->
+
+                                @*@{
+                                        var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+                                        var nextDisabled = !Model.NextPage ? "disabled" : "";
+                                    }*@
+
+                                @*<a asp-action="Index"
+                                       asp-route-pageNumber="@(Model.PageIndex -1)"
+                                       class="btn btn-default @prevDisabled">
+                                        Previous
+                                    </a>
+
+
+                                    <a asp-action="Index"
+                                       asp-route-pageNumber="@(Model.PageIndex +1)"
+                                       class="btn btn-default @nextDisabled">
+                                        Next
+                                    </a>*@
+                                <div class="jsgrid-pager">
+                                    Pages: <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">First</a></span>
+                                    <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">Prev</a></span>
+                                    <span class="jsgrid-pager-page jsgrid-pager-current-page">1</span>
+                                    <span class="jsgrid-pager-page"><a href="javascript:void(0);">2</a></span>
+                                    <span class="jsgrid-pager-page"><a href="javascript:void(0);">3</a></span>
+                                    <span class="jsgrid-pager-page"><a href="javascript:void(0);">4</a></span>
+                                    <span class="jsgrid-pager-page"><a href="javascript:void(0);">5</a></span>
+                                    <span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">...</a></span>
+                                    <span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Next</a></span>
+                                    <span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Last</a></span> &nbsp;&nbsp; 1 of 7
+                                </div>
                             </div>
                             <div class="jsgrid-load-shader" style="display: none; position: absolute; inset: 0px; z-index: 1000;"></div>
                             <div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...</div>
@@ -179,13 +286,28 @@
 
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="card">
 
-                </div>
-            </div>
 
         </div>
     </div>
     @*Container-fluid Ends*@
 </div>
+
+<script>
+    function confirmDelete(uniqueId, isDeleteClicked) {
+        var deleteSpan = 'deleteSpan_' + uniqueId;
+        var confirmDeleteSpan = 'confirmDeleteSpan_' + uniqueId;
+
+        if (isDeleteClicked) {
+            $('#' + deleteSpan).hide();
+            $('#' + confirmDeleteSpan).show();
+        } else {
+            $('#' + deleteSpan).show();
+            $('#' + confirmDeleteSpan).hide();
+        }
+    }
+</script>
+
+
+
+

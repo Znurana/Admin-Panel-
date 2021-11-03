@@ -37,6 +37,11 @@
     <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/jQuery-Paging/jquery.paging.js"></script>
+    <script src="~/jquery-validate/jquery.validate.js"></script>
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
 </head>
 <body>
     <!-- Loader starts-->
@@ -222,10 +227,11 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown">
-                                    <a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>Widgets</span></a>
+                                    <a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>Role</span></a>
                                     <ul class="nav-submenu menu-content">
-                                        <li><a href="general-widget.html">General</a></li>
-                                        <li><a href="chart-widget.html">Chart</a></li>
+                                        <li> <a href="@Url.Action("Index", "Role")">Role List</a></li>
+                                       
+                                        <li> <a href="@Url.Action("New", "Role")">Add Role</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">

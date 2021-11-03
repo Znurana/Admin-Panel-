@@ -15,21 +15,23 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 
-<h1 style="text-align:center;"> Edit User</h1>
+<h1 style="text-align:center;">Düzəliş et</h1>
 <form asp-controller="User" asp-action="Save" method="post">
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
-
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>FatherName</th>
-                <th>UserName</th>
-                <th>UserPassword</th>
-                <th>StationID</th>
-                <th>KassaID</th>
-                <th>UserCreateDate</th>
-                <th>Edit</th>
+                
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>Ata adı</th>
+                <th>Doğum tarixi</th>
+                <th>İstifadəçi adı</th>
+                <th>İstifadəçi şifrə</th>
+                <th>Stansiya adı</th>
+                <th>Kassa nömrəsi</th>
+                <th>İstifadəçi yaranma tarixi</th>
+                <th>File</th>
+                <th>Save</th>
 
             </tr>
         </thead>
@@ -41,39 +43,55 @@
 
                 <td>
                     <input asp-for="UserFirstName" class="form-control" type="text" placeholder="UserFirstName" />
-                    <span asp-validation-for="UserFirstName"  style="color:red;"class="input-group-text"></span>
+                    <span asp-validation-for="UserFirstName" style="color:red;" class="input-group-text"></span>
                 </td>
 
                 <td>
                     <input asp-for="UserLastName" class="form-control" type="text" placeholder="UserLastName" />
-                    <span asp-validation-for="UserLastName"  style="color:red;" style="color:red" class="input-group-text"></span>
+                    <span asp-validation-for="UserLastName" style="color:red;" style="color:red" class="input-group-text"></span>
                 </td>
-                </td>
+               
                 <td>
                     <input asp-for="UserFatherName" class="form-control" type="text" placeholder="UserFatherName" />
                     <span asp-validation-for="UserFatherName" style="color:red;" class="input-group-text"></span>
 
                 </td>
                 <td>
+                    <input asp-for="BirthdayDate" class="form-control" type="date" placeholder="BirthdayDate" />
+                    <span asp-validation-for="BirthdayDate" style="color:red;" class="input-group-text"></span>
+                    
+                </td>
+
+                <td>
                     <input asp-for="UserName" class="form-control" type="text" placeholder="UserName" />
-                    <span asp-validation-for="UserName"  style="color:red;" class="input-group-text"></span>
+                    <span asp-validation-for="UserName" style="color:red;" class="input-group-text"></span>
                 </td>
                 <td>
                     <input asp-for="UserPassword" class="form-control" type="text" placeholder="UserPassword" />
                     <span asp-validation-for="UserPassword" style="color:red;" class="input-group-text"></span>
                 </td>
                 <td>
-                    @*<input asp-for="StationID" class="form-control" type="text" placeholder="UserPassword" />*@
+
                     @Html.DropDownListFor(x => x.StationID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
                     <span asp-validation-for="StationID" style="color:red;" class="input-group-text"></span>
                     @*@Html.DropDownListFor(x => x.StationID, ViewBag.dgr as IEnumerable<SelectListItem>, new { @class = "form-control" })*@
                 </td>
                 <td>
                     <input asp-for="KassaID" class="form-control" type="number" placeholder="KassaID" />
-                    <span asp-validation-for="KassaID"  style="color:red;"class="input-group-text"></span>
+                    <span asp-validation-for="KassaID" style="color:red;" class="input-group-text"></span>
                 </td>
                 <td>
-                    <input asp-for="UserCreateDate"  class="form-control" type="date" />
+                    <input disabled asp-for="UserCreateDate" class="form-control" type="date" />
+                </td>
+
+                <td>
+
+                    <div class="custom-file">
+                        <input asp-for="ProfilePicture" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+
                 </td>
 
                 <td>
@@ -82,7 +100,7 @@
 
 
 
-        </tbody>
+</tbody>
     </table>
 </form>
 

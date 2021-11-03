@@ -163,7 +163,6 @@ D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\User\Edit.cshtml.g.cs
 D:\repos\Test_AdminPanel\bin\Debug\net5.0\JetBrains.Annotations.dll
 D:\repos\Test_AdminPanel\bin\Debug\net5.0\X.PagedList.dll
 D:\repos\Test_AdminPanel\bin\Debug\net5.0\X.PagedList.Mvc.Core.dll
-D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Main\IndexS.cshtml.g.cs
 D:\repos\Test_AdminPanel\bin\Debug\net5.0\libman.json
 D:\repos\Test_AdminPanel\bin\Debug\net5.0\Test_AdminPanel.StaticWebAssets.xml
 D:\repos\Test_AdminPanel\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -179,5 +178,17 @@ D:\repos\Test_AdminPanel\bin\Debug\net5.0\Optivem.Atomiv.Core.Application.Interf
 D:\repos\Test_AdminPanel\bin\Debug\net5.0\Optivem.Atomiv.Core.Common.dll
 D:\repos\Test_AdminPanel\bin\Debug\net5.0\Optivem.Atomiv.Core.Domain.dll
 D:\repos\Test_AdminPanel\bin\Debug\net5.0\Optivem.Atomiv.Infrastructure.FluentValidation.dll
-D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Admin\Create.cshtml.g.cs
 D:\repos\Test_AdminPanel\bin\Debug\net5.0\Views\appsettings.Development.json
+D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Employee\Index.cshtml.g.cs
+D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Employee\New.cshtml.g.cs
+D:\repos\Test_AdminPanel\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\repos\Test_AdminPanel\bin\Debug\net5.0\Microsoft.AspNet.Identity.Core.dll
+D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\UserRole\AddRole.cshtml.g.cs
+D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Role\Index.cshtml.g.cs
+D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Role\New.cshtml.g.cs
+D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Main\AccessDenied.cshtml.g.cs
+D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Main\IndexS.cshtml.g.cs
+D:\repos\Test_AdminPanel\bin\Debug\net5.0\PagedList.dll
+D:\repos\Test_AdminPanel\bin\Debug\net5.0\PagedList.Mvc.dll
+D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Grid\InlineEditing.cshtml.g.cs
+D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Home\Test.cshtml.g.cs

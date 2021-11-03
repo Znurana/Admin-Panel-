@@ -12,5 +12,6 @@ namespace Test_AdminPanel.Models.VM
         public string UserName { get; set; }
        [Required(ErrorMessage = "Password daxil edin")]
         public string UserPassword { get; set; }
+       
     }
 }

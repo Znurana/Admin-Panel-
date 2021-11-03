@@ -7,6 +7,7 @@ namespace Test_AdminPanel.Models
 {
     public class Station
     {
+
         public int StationID { get; set; }
         public string StationName { get; set; }
         public IList<User> users { get; set; }

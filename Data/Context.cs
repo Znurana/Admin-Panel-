@@ -14,7 +14,16 @@ namespace Test_AdminPanel.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Station> stations { get; set; }
+       
         public DbSet<Kassa> kassas { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+       
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Map_UserRole> UserRoles { get; set; }
+
+
+
+
 
 
         public Context(DbContextOptions<Context> options) : base(options)
@@ -24,29 +33,34 @@ namespace Test_AdminPanel.Data
 
 
 
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
             modelBuilder.Entity<User>()
-             .HasKey(p => new { p.UserID });
+             .HasKey(p => new { p.UserID }
+             );
+
 
             modelBuilder.Entity<User>()
                 .Property(p => p.UserName)
                 .HasMaxLength(150)
                 .HasColumnType("nvarchar");
-                
+                //.HasColumnName("Test");
+
+ 
+
 
             modelBuilder.Entity<User>()
                 .Property(p => p.UserPassword)
                 .HasMaxLength(150)
                 .HasColumnType("nvarchar");
+            
 
-                modelBuilder.Entity<User>()
-               .Property(p => p.UserCreateDate)
-              .HasDefaultValueSql("getdate()")
-               .IsRequired();
+            modelBuilder.Entity<User>()
+           .Property(p => p.UserCreateDate)
+          .HasDefaultValueSql("getdate()")
+          .HasColumnType("datetime2")
+           .IsRequired();
 
 
             //Stations 
@@ -62,6 +76,7 @@ namespace Test_AdminPanel.Data
             modelBuilder.Entity<Kassa>()
             .HasKey(p => new { p.KassaID });
 
+           
 
 
 

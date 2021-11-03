@@ -13,7 +13,7 @@ using Test_AdminPanel.Models.VM;
 
 namespace Test_AdminPanel.Controllers
 {
-    [AllowAnonymous]
+    
     public class EmployeeController : Controller
     {
         private readonly Context dbContext;

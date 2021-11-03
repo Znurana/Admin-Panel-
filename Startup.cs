@@ -15,7 +15,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Identity;
-
+using Test_AdminPanel.Models;
+using Microsoft.AspNetCore.Http;
 
 
 namespace Test_AdminPanel
@@ -29,17 +30,10 @@ namespace Test_AdminPanel
 
         public IConfiguration Configuration { get; }
 
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-            services.AddAuthentication(
-
-                CookieAuthenticationDefaults.AuthenticationScheme).
-                AddCookie(x =>
-                {
-                    x.LoginPath = "/Login/Index";
-                });
+            //services.AddMvc();
 
             services.AddMvc(config =>
             {
@@ -50,9 +44,26 @@ namespace Test_AdminPanel
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
-         
 
-            services.AddControllersWithViews().AddFluentValidation(x=>x.RegisterValidatorsFromAssemblyContaining<Startup>());
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(x =>
+                 {
+                     x.LoginPath = "/Login/Index";
+                     x.AccessDeniedPath = "/Main/AccessDenied";
+                 });
+
+
+
+
+
+
+
+            services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
 
 
 
@@ -67,7 +78,7 @@ namespace Test_AdminPanel
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -78,12 +89,13 @@ namespace Test_AdminPanel
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseAuthentication();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseCookiePolicy();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

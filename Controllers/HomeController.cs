@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,6 +12,7 @@ using Test_AdminPanel.Models;
 
 namespace Test_AdminPanel.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public readonly Context _context;
@@ -39,8 +41,20 @@ namespace Test_AdminPanel.Controllers
             return View(await empquery.AsNoTracking().ToListAsync());
 
         }
+        [HttpGet]
+        public IActionResult Test()
+        {
+            var model = _context.Users.Include(m => m.station).ToList();
+            return View(model);
+        }
 
-      
+        //[HttpPost]
+        //public IActionResult Test()
+        //{
+            
+        //}
+
+
 
 
 
@@ -101,6 +115,7 @@ namespace Test_AdminPanel.Controllers
 
             return View("Edit", model);
         }
+        
 
 
 

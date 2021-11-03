@@ -1,6 +1,7 @@
 ﻿@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
-@addTagHelper *, AuthoringTagHelpers
-@model Test_AdminPanel.Models.User
+@addTagHelper *, AuthoringTagHelpersusi
+
+@model Test_AdminPanel.Models.VM.UserFileVM
 
 
 
@@ -12,29 +13,28 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/jquery-validate/jquery.validate.js"></script>
     <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-
-
-
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/DataTable/DataTables-1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <h1 style="text-align:center;"> Add New user</h1>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
-
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>FatherName</th>
-                <th>UserName</th>
-                <th>UserPassword</th>
-                <th>StationID</th>
-                <th>KassaID</th>
-                <th>UserCreateDate</th>
-                <th>Edit</th>
+             
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>Ata adı</th>
+                <th>Doğum tarixi</th>
+                <th>İstifadəçi adı</th>
+                <th>İstifadəçi şifrə</th>
+                <th>Stansiya adı</th>
+                <th>Kassa nömrəsi</th>
+                <th>İstifadəçi yaranma tarixi</th>
+                <th>File</th>
+                <th>Save</th>
 
             </tr>
         </thead>
@@ -42,11 +42,11 @@
 
             <tr>
 
-                <input asp-for="UserID" class="form-control" type="hidden" placeholder="userId" />
+                @*<input asp-for="UserID" class="form-control" type="hidden" placeholder="userId" />*@
 
                 <td>
                     <input asp-for="UserFirstName" class="form-control" type="text" placeholder="UserFirstName" />
-                    <span asp-validation-for="UserFirstName"  style="color:red;" class="input-group-text"></span>
+                    <span asp-validation-for="UserFirstName" style="color:red;" class="input-group-text"></span>
                 </td>
 
                 <td>
@@ -60,16 +60,21 @@
 
                 </td>
                 <td>
+                    <input asp-for="BirthdayDate"  asp-format="{0:dd/MM/yyyy}" class="form-control" type="date" placeholder="BirthdayDate" />
+                    <span asp-validation-for="BirthdayDate" style="color:red;" class="input-group-text"></span>
+
+                </td>
+                <td>
                     <input asp-for="UserName" class="form-control" type="text" placeholder="UserName" />
                     <span asp-validation-for="UserName" style="color:red;" class="input-group-text"></span>
                 </td>
                 <td>
                     <input asp-for="UserPassword" class="form-control" type="text" placeholder="UserPassword" />
-                    <span asp-validation-for="UserPassword"  style="color:red;"class="input-group-text"></span>
+                    <span asp-validation-for="UserPassword" style="color:red;" class="input-group-text"></span>
                 </td>
                 <td>
                     @Html.DropDownListFor(x => x.station.StationID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
-                    <span asp-validation-for="StationID"  style="color:red;"class="input-group-text"></span>
+                    <span asp-validation-for="StationID" style="color:red;" class="input-group-text"></span>
 
 
                 </td>
@@ -78,7 +83,17 @@
                     <span asp-validation-for="KassaID" style="color:red;" class="input-group-text"></span>
                 </td>
                 <td>
-                    <input asp-for="UserCreateDate"  class="form-control" type="date" />
+                    <input disabled asp-for="UserCreateDate"  class="form-control" type="date" />
+                </td>
+
+                <td>
+
+                    <div class="custom-file">
+                        <input asp-for="ProfileImage" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <span asp-validation-for="ProfileImage" class="text-danger"></span>
+
                 </td>
 
                 <td>
@@ -87,16 +102,29 @@
 
 
 
-        </tbody>
+</tbody>
     </table>
 </form>
 
+@section scripts{
+    <script type="text/javascript">
+
+        
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}
+
+
+
 @*<script>
-    $('#btn1').click(function () {
-        swal("Good job!", "User is added !", "success");
-       
-    });
-</script>*@
+        $('#btn1').click(function () {
+            swal("Good job!", "User is added !", "success");
+
+        });
+    </script>*@
 
 
 

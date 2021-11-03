@@ -13,6 +13,10 @@
     {
       "library": "jquery@3.6.0",
       "destination": "wwwroot/jquery/"
+    },
+    {
+      "library": "jQuery-Paging@1.2.0",
+      "destination": "wwwroot/jQuery-Paging/"
     }
   ]
 }

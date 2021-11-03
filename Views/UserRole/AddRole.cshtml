@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+
+@model Test_AdminPanel.Models.Map_UserRole
+
+@{
+    ViewData["Title"] = "New";
+}
+
+<div class="col-md-10 mx-auto py-4">
+    <div class="card">
+        <div class="card-header bg-primary text-uppercase text-white">
+            <h4>Add New </h4>
+        </div>
+        <div class="card-body">
+            <form enctype="multipart/form-data" asp-action="New">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="UserRoleID" class="control-label"></label>
+                            <input asp-for="UserRoleID" class="form-control" />
+                            <span asp-validation-for="UserRoleID" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="UserID" class="control-label"></label>
+                            <input asp-for="UserID" class="form-control" />
+                            <span asp-validation-for="UserID" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+       
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="RoleID" class="control-label"></label>
+                            <input asp-for="RoleID" class="form-control" />
+                            <span asp-validation-for="RoleID" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="RoleName" class="control-label"></label>
+                            <input asp-for="RoleName" class="form-control" />
+                            <span asp-validation-for="RoleName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="IsActive" class="control-label"></label>
+                            <input asp-for="IsActive" class="form-control" />
+                            <span asp-validation-for="IsActive" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="CreateDate" class="control-label"></label>
+                            <input asp-for="CreateDate" class="form-control" />
+                            <span asp-validation-for="CreateDate" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="submit" class="btn btn-sm btn-primary rounded-0 text-uppercase" />
+             
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,151 @@
+﻿@model IEnumerable<Test_AdminPanel.Models.User>
+<head>
+    <link href="~/DataTable/DataTables-1.11.3/css/jquery.dataTables.css" rel="stylesheet" />
+</head>
+<style>
+    tfoot input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+    }
+
+    .imggallery {
+        height: 50px;
+        width: 50px;
+        -webkit-transition: all .4s ease-in;
+    }
+
+        .imggallery:hover {
+            height: 130px;
+            width: 130px;
+        }
+</style>
+
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Şəkil</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Ata adı</th>
+            <th>Doğum tarixi</th>
+            <th>İstifadəçi adı</th>
+            <th>İstifadəçi şifrə</th>
+            <th>Stansiya adı</th>
+            <th>Kassa nömrəsi</th>
+            <th>İstifadəçi yaranma tarixi</th>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    <th>Düzəliş et</th>
+
+                }
+
+            }
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Delete") || User.IsInRole("Admin"))
+                {
+                    <th>Sil</th>
+
+                }
+
+            }
+        </tr>
+    </thead>
+
+
+    <tfoot>
+        <tr>
+            <th>Şəkil</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Ata adı</th>
+            <th>Doğum tarixi</th>
+            <th>İstifadəçi adı</th>
+            <th>İstifadəçi şifrə</th>
+            <th>Stansiya adı</th>
+            <th>Kassa nömrəsi</th>
+            <th>İstifadəçi yaranma tarixi</th>
+
+        </tr>
+    </tfoot>
+    <tbody>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @user.UserID
+
+                    <img src="~/images/@user.ProfilePicture"
+                         class="rounded-circle  imggallery"
+                         asp-append-version="true" />
+
+                </td>
+                <td>@user.UserFirstName</td>
+                <td>@user.UserLastName</td>
+                <td>@user.UserFatherName</td>
+                <td>@user.BirthdayDate.ToString(string.Format("dd/MM/yyyy"))</td>
+                <td>@user.UserName</td>
+                <td>@user.UserPassword</td>
+                <td>@user.station.StationName</td>
+                <td>@user.KassaID</td>
+                <td>@user.UserCreateDate.ToString(string.Format("dd/MM/yyyy")) </td>
+
+
+            </tr>
+        }
+
+    </tbody>
+
+    </tbody>
+</table>
+
+
+<script src="~/jquery/jquery.js"></script>
+<script src="~/DataTable/DataTables-1.11.3/js/jquery.dataTables.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        // Setup - add a text input to each footer cell
+        $('#example tfoot th').each(function () {
+            var title = $('#example thead th').eq($(this).index()).text();
+            $(this).html('
+                < input type = "text" placeholder = "Search '+title+'" /> ' );
+    });
+
+        // DataTable
+        var table = $('#example').DataTable();
+
+        // Apply the search
+        table.columns().every(function () {
+            var that = this;
+
+            $('input', this.footer()).on('keyup change', function () {
+                that
+                    .search(this.value)
+                    .draw();
+            });
+        });
+    });
+</script>
+
+<script>
+    function confirmDelete(uniqueId, isDeleteClicked) {
+        var deleteSpan = 'deleteSpan_' + uniqueId;
+        var confirmDeleteSpan = 'confirmDeleteSpan_' + uniqueId;
+
+        if (isDeleteClicked) {
+            $('#' + deleteSpan).hide();
+            $('#' + confirmDeleteSpan).show();
+        } else {
+            $('#' + deleteSpan).show();
+            $('#' + confirmDeleteSpan).hide();
+        }
+    }
+</script>

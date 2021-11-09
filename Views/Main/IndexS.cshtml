@@ -115,10 +115,10 @@
                                             <tr>
                                                 <td>
                                                     @user.UserID
+                                                    <img src="@FileLocation.RetriveFileFromFolder@user.ProfilePicture"
+                                                         class="rounded-circle  img-thumbnail imggallery"
+                                                         asp-append-version="true" />
 
-                                                    <img src="~/images/@user.ProfilePicture"
-                                                         class="rounded-circle  imggallery"
-                                                          asp-append-version="true" />
 
                                                 </td>
                                                 <td>@user.UserFirstName</td>

@@ -23,7 +23,7 @@ namespace Test_AdminPanel.Models.Validators
             RuleFor(x => x.UserFatherName).NotNull().WithMessage("Ata adi daxil edin ");
             RuleFor(x => x.KassaID).NotNull().WithMessage("Kassa ID daxil edin ");
             RuleFor(x => x.StationID).NotNull().WithMessage("Station Id daxil edin ");
-            RuleFor(x => x.ProfileImage).NotNull().WithMessage("Please choose profile image");
+            
 
 
 

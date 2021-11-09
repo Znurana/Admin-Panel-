@@ -12,9 +12,7 @@ using Test_AdminPanel.Models.VM;
 using X.PagedList;
 
 namespace Test_AdminPanel.Controllers
-{
-    [Authorize]
-
+{[Authorize]
     public class MainController : Controller
     {
 
@@ -40,7 +38,6 @@ namespace Test_AdminPanel.Controllers
 
 
        
-       [Authorize]
         public async Task<IActionResult> Index(int pageNumber = 1)
         {
             //var user = await _context.Users.Include(m => m.station).ToListAsync();

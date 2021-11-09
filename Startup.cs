@@ -33,8 +33,6 @@ namespace Test_AdminPanel
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddMvc();
-
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder().
@@ -50,17 +48,13 @@ namespace Test_AdminPanel
             {
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(x =>
                  {
                      x.LoginPath = "/Login/Index";
                      x.AccessDeniedPath = "/Main/AccessDenied";
                  });
-
-
-
-
-
 
 
             services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
@@ -71,6 +65,7 @@ namespace Test_AdminPanel
             {
                 options.UseSqlServer(Configuration["ConnectionString:Default"]);
             });
+           
 
 
         }

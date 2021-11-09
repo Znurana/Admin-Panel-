@@ -17,6 +17,7 @@ namespace Test_AdminPanel.Models.VM
         public DateTime BirthdayDate { get; set; }
         public string UserName { get; set; }
         public string UserPassword { get; set; }
+
         public int StationID { get; set; }
         public virtual Station station { get; set; }
 
@@ -28,8 +29,5 @@ namespace Test_AdminPanel.Models.VM
         public DateTime UserCreateDate { get; set; } = DateTime.Now;
 
 
-        [Display(Name = "Profile Picture")]
-        public IFormFile ProfileImage { get; set; }
-       
     }
 }

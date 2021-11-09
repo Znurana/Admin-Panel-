@@ -1,6 +1,6 @@
 ﻿@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
 @addTagHelper *, AuthoringTagHelpers
-@model Test_AdminPanel.Models.User
+@model Test_AdminPanel.Models.VM.UserFileVM
 
 
 @{
@@ -16,11 +16,11 @@
 </head>
 
 <h1 style="text-align:center;">Düzəliş et</h1>
-<form asp-controller="User" asp-action="Save" method="post">
+<form asp-controller="User" asp-action="Edit" method="post" enctype="multipart/form-data">
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
-                
+
                 <th>Ad</th>
                 <th>Soyad</th>
                 <th>Ata adı</th>
@@ -50,7 +50,7 @@
                     <input asp-for="UserLastName" class="form-control" type="text" placeholder="UserLastName" />
                     <span asp-validation-for="UserLastName" style="color:red;" style="color:red" class="input-group-text"></span>
                 </td>
-               
+
                 <td>
                     <input asp-for="UserFatherName" class="form-control" type="text" placeholder="UserFatherName" />
                     <span asp-validation-for="UserFatherName" style="color:red;" class="input-group-text"></span>
@@ -59,7 +59,7 @@
                 <td>
                     <input asp-for="BirthdayDate" class="form-control" type="date" placeholder="BirthdayDate" />
                     <span asp-validation-for="BirthdayDate" style="color:red;" class="input-group-text"></span>
-                    
+
                 </td>
 
                 <td>
@@ -86,11 +86,14 @@
 
                 <td>
 
-                    <div class="custom-file">
-                        <input asp-for="ProfilePicture" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input asp-for="SpeakerPicture" class="custom-file-input" />
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                        <span asp-validation-for="SpeakerPicture" class="text-danger"></span>
+                        <img src="@FileLocation.RetriveFileFromFolder@Model.ExistingImage" class="img-thumbnail" height="80" width="80" asp-append-version="true" />
                     </div>
-                    <span asp-validation-for="ProfilePicture" class="text-danger"></span>
 
                 </td>
 
@@ -100,14 +103,16 @@
 
 
 
-</tbody>
+        </tbody>
     </table>
 </form>
-
-
-
-
-
-
-
-
+@section Scripts {
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -15,17 +15,18 @@ using Test_AdminPanel.Models.VM;
 namespace Test_AdminPanel.Controllers
 {
     [AllowAnonymous]
+
     public class LoginController : Controller
     {
 
+       
         public readonly Context _context;
-        private readonly ILogger<HomeController> _logger;
-        public LoginController(Context context, ILogger<HomeController> logger)
+        private readonly ILogger<LoginController> _logger;
+        public LoginController(Context context, ILogger<LoginController> logger)
         {
             _logger = logger;
             _context = context;
         }
-
 
         [HttpGet]
         public IActionResult Index()
@@ -33,7 +34,7 @@ namespace Test_AdminPanel.Controllers
             return View();
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Index( UserVM data)
         {
@@ -74,11 +75,6 @@ namespace Test_AdminPanel.Controllers
             HttpContext.Response.Cookies.Delete(".AspNetCore.Cookies");
             return RedirectToAction("Index", "Login");
         }
-
-
-     
-
-
 
     }
 }

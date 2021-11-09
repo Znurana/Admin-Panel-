@@ -10,7 +10,7 @@ namespace Test_AdminPanel.Models.VM
     public class UploadImageViewModel
     {
         [Required]
-        [Display(Name = "Image")]
+
         public IFormFile SpeakerPicture { get; set; }
     }
 }

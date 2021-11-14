@@ -190,3 +190,5 @@ D:\repos\Test_AdminPanel\bin\Debug\net5.0\PagedList.dll
 D:\repos\Test_AdminPanel\bin\Debug\net5.0\PagedList.Mvc.dll
 D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Grid\InlineEditing.cshtml.g.cs
 D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Home\Test.cshtml.g.cs
+D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Shared\FooterPartial.cshtml.g.cs
+D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\ErrorPage\Error1.cshtml.g.cs

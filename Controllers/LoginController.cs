@@ -28,14 +28,16 @@ namespace Test_AdminPanel.Controllers
             _context = context;
         }
 
-        [HttpGet]
+       
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
-        [AllowAnonymous]
+        
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Index( UserVM data)
         {
             var user = _context.Users.FirstOrDefault(x => x.UserName == data.UserName && x.UserPassword == data.UserPassword);

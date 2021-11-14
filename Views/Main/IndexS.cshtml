@@ -112,60 +112,60 @@
                                     <tbody>
                                         @foreach (var user in Model)
                                         {
-                                            <tr>
-                                                <td>
-                                                    @user.UserID
-                                                    <img src="@FileLocation.RetriveFileFromFolder@user.ProfilePicture"
-                                                         class="rounded-circle  img-thumbnail imggallery"
-                                                         asp-append-version="true" />
+                                        <tr>
+                                            <td>
+                                                @user.UserID
+                                                <img src="@FileLocation.RetriveFileFromFolder@user.ProfilePicture"
+                                                     class="rounded-circle  img-thumbnail imggallery"
+                                                     asp-append-version="true" />
 
 
-                                                </td>
-                                                <td>@user.UserFirstName</td>
-                                                <td>@user.UserLastName</td>
-                                                <td>@user.UserFatherName</td>
-                                                <td>@user.BirthdayDate</td>
-                                                <td>@user.UserName</td>
-                                                <td>@user.UserPassword</td>
-                                                <td>@user.StationID</td>
-                                                <td>@user.KassaID</td>
-                                                <td>@user.UserCreateDate</td>
-                                                <td>
-                                                    @if (User.Identity.IsAuthenticated)
+                                            </td>
+                                            <td>@user.UserFirstName</td>
+                                            <td>@user.UserLastName</td>
+                                            <td>@user.UserFatherName</td>
+                                            <td>@(((DateTime)user.BirthdayDate).ToString("dd-MMM-yyyy"))</td>
+                                            <td>@user.UserName</td>
+                                            <td>@user.UserPassword</td>
+                                            <td>@user.StationID</td>
+                                            <td>@user.KassaID</td>
+                                            <td>@(((DateTime)user.UserCreateDate).ToString("dd-MMM-yyyy"))</td>
+                                            <td>
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    if (User.IsInRole("Admin"))
                                                     {
-                                                        if (User.IsInRole("Admin"))
-                                                        {
 
-                                                            <a id="btn1" class="btn btn-primary" href="@Url.Action("Edit", "User", new { Id = user.UserID})">Edit</a>
-                                                        }
-
+                                                        <a id="btn1" class="btn btn-primary" href="@Url.Action("Edit", "User", new { Id = user.UserID})">Edit</a>
                                                     }
-                                                </td>
 
-                                                <td>
-                                                    @if (User.Identity.IsAuthenticated)
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    if (User.IsInRole("Delete") || User.IsInRole("Admin"))
                                                     {
-                                                        if (User.IsInRole("Delete") || User.IsInRole("Admin"))
-                                                        {
 
-                                                            <span id="confirmDeleteSpan_@user.UserID" style="display:none">
-                                                                <span><b>Silmək istədiyinizə əminsiniz?</b></span>
-                                                                <a id="btn1" class="btn btn-danger" href="@Url.Action("UserDelete", "User", new { Id = user.UserID})">Yes</a>
-                                                                <a href="#" class="btn btn-primary"
-                                                                   onclick="confirmDelete('@user.UserID', false)">No</a>
-                                                            </span>
+                                                        <span id="confirmDeleteSpan_@user.UserID" style="display:none">
+                                                            <span><b>Silmək istədiyinizə əminsiniz?</b></span>
+                                                            <a id="btn1" class="btn btn-danger" href="@Url.Action("UserDelete", "User", new { Id = user.UserID})">Yes</a>
+                                                            <a href="#" class="btn btn-primary"
+                                                               onclick="confirmDelete('@user.UserID', false)">No</a>
+                                                        </span>
 
-                                                            <span id="deleteSpan_@user.UserID">
-                                                                <a href="#" class="btn btn-danger"
-                                                                   onclick="confirmDelete('@user.UserID', true)">Delete</a>
-                                                            </span>
-
-                                                        }
+                                                        <span id="deleteSpan_@user.UserID">
+                                                            <a href="#" class="btn btn-danger"
+                                                               onclick="confirmDelete('@user.UserID', true)">Delete</a>
+                                                        </span>
 
                                                     }
 
-                                                </td>
-                                            </tr>
+                                                }
+
+                                            </td>
+                                        </tr>
                                         }
 
                                     </tbody>

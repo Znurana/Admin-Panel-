@@ -1,23 +1,18 @@
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Test_AdminPanel.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Test_AdminPanel.Models;
 using Microsoft.AspNetCore.Http;
-
+using ElmahCore.Sql;
+using ElmahCore.Mvc;
 
 namespace Test_AdminPanel
 {
@@ -43,6 +38,18 @@ namespace Test_AdminPanel
             });
 
             services.AddMvc();
+
+            services.AddElmah<SqlErrorLog>(options =>
+            {
+                options.ConnectionString = "Server=DESKTOP-LD6PVLC;Database=Admin_Panel;Trusted_Connection=True;MultipleActiveResultSets=true";
+            });
+
+
+            services.AddElmahIo(o =>
+            {
+                o.ApiKey = "17382270ea044b069ee8107c19c4f542";
+                o.LogId = new Guid("aa56091a-b203-4456-bca5-f6b49e4f9d9a");
+            });
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.MinimumSameSitePolicy = SameSiteMode.None;
@@ -83,7 +90,9 @@ namespace Test_AdminPanel
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            //app.UseStatusCodePages();
+            app.UseElmah();
+            app.UseElmahIo();
+           
             app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");
 
             app.UseHttpsRedirection();

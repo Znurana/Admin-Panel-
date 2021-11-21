@@ -192,3 +192,10 @@ D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Grid\InlineEditing.cshtml.
 D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Home\Test.cshtml.g.cs
 D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Shared\FooterPartial.cshtml.g.cs
 D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\ErrorPage\Error1.cshtml.g.cs
+D:\repos\Test_AdminPanel\obj\Debug\net5.0\Razor\Views\Role\Edit.cshtml.g.cs
+D:\repos\Test_AdminPanel\bin\Debug\net5.0\Elmah.Io.AspNetCore.dll
+D:\repos\Test_AdminPanel\bin\Debug\net5.0\Elmah.Io.Client.dll
+D:\repos\Test_AdminPanel\bin\Debug\net5.0\ElmahCore.Mvc.dll
+D:\repos\Test_AdminPanel\bin\Debug\net5.0\ElmahCore.dll
+D:\repos\Test_AdminPanel\bin\Debug\net5.0\ElmahCore.Sql.dll
+D:\repos\Test_AdminPanel\bin\Debug\net5.0\HtmlAgilityPack.dll

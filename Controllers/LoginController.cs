@@ -18,8 +18,6 @@ namespace Test_AdminPanel.Controllers
 
     public class LoginController : Controller
     {
-
-       
         public readonly Context _context;
         private readonly ILogger<LoginController> _logger;
         public LoginController(Context context, ILogger<LoginController> logger)

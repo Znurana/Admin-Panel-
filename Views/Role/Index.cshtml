@@ -1,5 +1,5 @@
 ﻿@using Test_AdminPanel.Models
-@model List<Role>
+@model List<Map_UserRole>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -10,67 +10,49 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
 </head>
 
-<h2 style="text-align:center"> User List</h2>
+<h2 style="text-align:center"> Role List</h2>
 
 <div class="page-body">
     <div class="container-fluid">
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-6">
-                    <h3>Users</h3>
+                    <h3>Role List</h3>
+                </div>
 
-                </div>
-                <div class="col-sm-6">
-                    @*Bookmark Start*@
-                    <div class="bookmark">
-                        <ul>
-                            <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="inbox"></i></a></li>
-                            <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Chat"><i data-feather="message-square"></i></a></li>
-                            <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Icons"><i data-feather="command"></i></a></li>
-                            <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Learning"><i data-feather="layers"></i></a></li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="bookmark-search" data-feather="star"></i></a>
-                                <form class="form-inline search-form">
-                                    <div class="form-group form-control-search">
-                                        <input type="text" placeholder="Search..">
-                                    </div>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                    @*Bookmark Ends*@
-                </div>
             </div>
         </div>
     </div>
-    @*Container-fluid starts*@
 
-
-
-
-    <div class="card-header pb-0">
-        <h5>ADY</h5><span>Role List</span>
-    </div>
     <div class="card-body">
         <div style="position: relative; height: auto; width: 100%;">
             <div class="jsgrid-grid-header jsgrid-header-scrollbar">
                 <table id="example" class="table table-striped" style="padding-left:30%">
                     <thead>
                         <tr>
+                            <th>UserID</th>
                             <th>RoleId</th>
                             <th>RoleName</th>
+                            <th>IsActive</th>
+                            <th>CreateDate</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var role in Model)
                         {
                             <tr>
-
+                                <td>@role.UserID</td>
                                 <td>@role.RoleID</td>
                                 <td>@role.RoleName</td>
-
+                                <td>@role.IsActive</td>
+                                <td>@role.CreateDate</td>
+                                
+                                <td>
+                                   
+                                    <a id="btn1" class="btn btn-primary" href="@Url.Action("Edit", "Role", new { Id = role.UserRoleID})">Edit</a>
+                                </td>
                             </tr>
-
                         }
 
                     </tbody>
@@ -78,3 +60,4 @@
             </div>
         </div>
     </div>
+</div>

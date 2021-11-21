@@ -1,10 +1,4 @@
-﻿@*@using X.PagedList;
-    @using X.PagedList.Mvc.Core;*@
-
-
-
-@*@model PaginatedList<Test_AdminPanel.Models.User>*@
-@model IEnumerable<Test_AdminPanel.Models.User>
+﻿@model IEnumerable<Test_AdminPanel.Models.User>
 
 
 @{
@@ -13,21 +7,39 @@
 }
 
 <head>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/jQuery-Paging/jquery.paging.js"></script>
+    <script src="~/jQuery-Paging/jquery.paging.min.js"></script>
+    <script src="~/DataTable/DataTables-1.11.3/js/jquery.dataTables.js"></script>
+    <link href="~/DataTable/DataTables-1.11.3/css/jquery.dataTables.css" rel="stylesheet" />
 </head>
 <style>
-
     .imggallery {
-        height: 50px;
-        width: 50px;
+        height: 80px;
+        width: 80px;
         -webkit-transition: all .4s ease-in;
     }
 
         .imggallery:hover {
-            height: 130px;
-            width: 130px;
+            height: 150px;
+            width: 150px;
         }
+
+/*    #sayfalama {
+        padding: 0 20px 20px 20px;
+    }
+
+        #sayfalama a {
+            color: #fff;
+            background: #333;
+            padding: 3px 7px;
+            margin-right: 6px;
+            text-decoration: none;
+        }
+
+            #sayfalama a.aktiv {
+                background: #006400;
+            }*/
 </style>
 
 <h2 style="text-align:center"> User List</h2>
@@ -73,8 +85,28 @@
                     </div>
                     <div class="card-body">
                         <div style="position: relative; height: auto; width: 100%;">
+                            <div class=" jsgrid-control-field jsgrid-align-left">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Admin"))
+                                    {
+                                        <a class="btn btn-success" href="/User/Index">New User</a>
+                                    }
+
+                                }
+
+                            </div>
+
+                            <div class=" jsgrid-control-field jsgrid-align-right">
+                                <form method="get" asp-action="IndexS" asp-controller="Main">
+
+                                    <input type="search" value="@ViewData["GetEmployeedetails"]" name="Empsearch" />
+                                    <input class="btn btn-primary" type="submit" value="Search" />
+
+                                </form>
+                            </div>
                             <div class="jsgrid-grid-header jsgrid-header-scrollbar">
-                                <table id="example" class="table table-striped" style="padding-left:30%">
+                                <table id="list" class="table table-striped" style="padding-left:30%">
                                     <thead>
                                         <tr>
                                             <th>Şəkil</th>
@@ -112,186 +144,85 @@
                                     <tbody>
                                         @foreach (var user in Model)
                                         {
-                                        <tr>
-                                            <td>
-                                                @user.UserID
-                                                <img src="@FileLocation.RetriveFileFromFolder@user.ProfilePicture"
-                                                     class="rounded-circle  img-thumbnail imggallery"
-                                                     asp-append-version="true" />
+                                            <tr>
+                                                <td>
+                                                    @user.UserID
+                                                    <img src="@FileLocation.RetriveFileFromFolder@user.ProfilePicture"
+                                                         class="rounded-circle  img-thumbnail imggallery"
+                                                         asp-append-version="true" />
 
 
-                                            </td>
-                                            <td>@user.UserFirstName</td>
-                                            <td>@user.UserLastName</td>
-                                            <td>@user.UserFatherName</td>
-                                            <td>@(((DateTime)user.BirthdayDate).ToString("dd-MMM-yyyy"))</td>
-                                            <td>@user.UserName</td>
-                                            <td>@user.UserPassword</td>
-                                            <td>@user.StationID</td>
-                                            <td>@user.KassaID</td>
-                                            <td>@(((DateTime)user.UserCreateDate).ToString("dd-MMM-yyyy"))</td>
-                                            <td>
-                                                @if (User.Identity.IsAuthenticated)
-                                                {
-                                                    if (User.IsInRole("Admin"))
+                                                </td>
+                                                <td>@user.UserFirstName</td>
+                                                <td>@user.UserLastName</td>
+                                                <td>@user.UserFatherName</td>
+                                                <td>@(((DateTime)user.BirthdayDate).ToString("dd.MM.yyyy"))</td>
+                                                <td>@user.UserName</td>
+                                                <td>@user.UserPassword</td>
+                                                <td>@user.StationID</td>
+                                                <td>@user.KassaID</td>
+                                                <td>@(((DateTime)user.UserCreateDate).ToString("dd.MM.yyyy"))</td>
+                                                <td>
+                                                    @if (User.Identity.IsAuthenticated)
                                                     {
+                                                        if (User.IsInRole("Admin"))
+                                                        {
 
-                                                        <a id="btn1" class="btn btn-primary" href="@Url.Action("Edit", "User", new { Id = user.UserID})">Edit</a>
-                                                    }
-
-                                                }
-                                            </td>
-
-                                            <td>
-                                                @if (User.Identity.IsAuthenticated)
-                                                {
-                                                    if (User.IsInRole("Delete") || User.IsInRole("Admin"))
-                                                    {
-
-                                                        <span id="confirmDeleteSpan_@user.UserID" style="display:none">
-                                                            <span><b>Silmək istədiyinizə əminsiniz?</b></span>
-                                                            <a id="btn1" class="btn btn-danger" href="@Url.Action("UserDelete", "User", new { Id = user.UserID})">Yes</a>
-                                                            <a href="#" class="btn btn-primary"
-                                                               onclick="confirmDelete('@user.UserID', false)">No</a>
-                                                        </span>
-
-                                                        <span id="deleteSpan_@user.UserID">
-                                                            <a href="#" class="btn btn-danger"
-                                                               onclick="confirmDelete('@user.UserID', true)">Delete</a>
-                                                        </span>
+                                                            <a id="btn1" class="btn btn-primary" href="@Url.Action("Edit", "User", new { Id = user.UserID})">Edit</a>
+                                                        }
 
                                                     }
+                                                </td>
 
-                                                }
+                                                <td>
+                                                    @if (User.Identity.IsAuthenticated)
+                                                    {
+                                                        if (User.IsInRole("Delete") || User.IsInRole("Admin"))
+                                                        {
 
-                                            </td>
-                                        </tr>
+                                                            <span id="confirmDeleteSpan_@user.UserID" style="display:none">
+                                                                <span><b>Silmək istədiyinizə əminsiniz?</b></span>
+                                                                <a id="btn1" class="btn btn-danger" href="@Url.Action("UserDelete", "User", new { Id = user.UserID})">Yes</a>
+                                                                <a href="#" class="btn btn-primary"
+                                                                   onclick="confirmDelete('@user.UserID', false)">No</a>
+                                                            </span>
+
+                                                            <span id="deleteSpan_@user.UserID">
+                                                                <a href="#" class="btn btn-danger"
+                                                                   onclick="confirmDelete('@user.UserID', true)">Delete</a>
+                                                            </span>
+
+                                                        }
+
+                                                    }
+
+                                                </td>
+                                            </tr>
                                         }
 
                                     </tbody>
                                 </table>
 
                             </div>
-                            <div class="jsgrid-grid-body">
-                                <table class="jsgrid-table">
-                                    <tbody>
-                                        <tr class="jsgrid-edit-row">
-                                            <td class="jsgrid-cell" style="width: 30px;">
-                                                <input type="number" disabled>
-                                            </td>
-                                            <td class="jsgrid-cell" style="width: 60px;">
-                                                <input type="text">
-                                            </td>
-                                            <td class="jsgrid-cell" style="width: 60px;">
-                                                <input type="text">
-                                            </td>
-                                            <td class="jsgrid-cell" style="width: 60px;">
-                                                <input type="text">
-                                            </td>
-                                            <td class="jsgrid-cell" style="width: 60px;">
-                                                <input type="text">
-                                            </td>
-                                            <td class="jsgrid-cell jsgrid-align-right" style="width: 60px;">
-                                                <input type="text">
-                                            </td>
-                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-                                                <select>
-                                                    <option value="0">Baki</option>
-                                                    <option value="1">Gəncə</option>
-                                                    <option value="2">Sumqayıt</option>
-                                                    <option value="2">Xırdalan</option>
 
-                                                </select>
-                                            </td>
-                                            <td class="jsgrid-cell jsgrid-align-right" style="width: 60px;">
-                                                <input type="number">
-                                            </td>
-
-                                            <td class="jsgrid-cell jsgrid-align-right" style="width: 60px;">
-                                                <input type="date">
-                                            </td>
-
-
-
-                                            <form method="get" asp-action="IndexS" asp-controller="Main">
-
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 100px;">
-
-                                                    <input type="search" placeholder="Search ..." value="@ViewData["GetEmployeedetails"]" name="Empsearch" />
-
-                                                </td>
-
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 60px;">
-
-                                                    <input class="btn btn-primary" type="submit" value="Search" />
-
-                                                </td>
-                                            </form>
-
-
-                                            <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 60px;">
-                                                @if (User.Identity.IsAuthenticated)
-                                                {
-                                                    if (User.IsInRole("Admin"))
-                                                    {
-                                                        <a class="btn btn-success" href="/User/Index">New User</a>
-                                                    }
-
-                                                }
-
-
-                                            </td>
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="jsgrid-pager-container" style="">
-
-                                @*@{
-                                        var prevDisabled = !Model.PreviousPage ? "disabled" : "";
-                                        var nextDisabled = !Model.NextPage ? "disabled" : "";
-                                    }*@
-
-                                @*<a asp-action="Index"
-                                       asp-route-pageNumber="@(Model.PageIndex -1)"
-                                       class="btn btn-default @prevDisabled">
-                                        Previous
-                                    </a>
-
-
-                                    <a asp-action="Index"
-                                       asp-route-pageNumber="@(Model.PageIndex +1)"
-                                       class="btn btn-default @nextDisabled">
-                                        Next
-                                    </a>*@
-                                <div class="jsgrid-pager">
-                                    Pages: <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">First</a></span>
-                                    <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">Prev</a></span>
-                                    <span class="jsgrid-pager-page jsgrid-pager-current-page">1</span>
-                                    <span class="jsgrid-pager-page"><a href="javascript:void(0);">2</a></span>
-                                    <span class="jsgrid-pager-page"><a href="javascript:void(0);">3</a></span>
-                                    <span class="jsgrid-pager-page"><a href="javascript:void(0);">4</a></span>
-                                    <span class="jsgrid-pager-page"><a href="javascript:void(0);">5</a></span>
-                                    <span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">...</a></span>
-                                    <span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Next</a></span>
-                                    <span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Last</a></span> &nbsp;&nbsp; 1 of 7
+                            <br />
+                            @*<div class="jsgrid-pager jsgrid-control-field">
+                                <div id="sayfalama">
+                                    Pages:
                                 </div>
-                            </div>
-                            <div class="jsgrid-load-shader" style="display: none; position: absolute; inset: 0px; z-index: 1000;"></div>
-                            <div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...</div>
+                            </div>*@
+
+                        </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
         </div>
     </div>
-    @*Container-fluid Ends*@
-</div>
+
+
+
+
 
 <script>
     function confirmDelete(uniqueId, isDeleteClicked) {
@@ -307,6 +238,45 @@
         }
     }
 </script>
+
+@*<script>
+    $(function () {
+
+        var toplamLi = $('#liste >tbody >tr').length;
+
+
+        var veriSayisi = 4;
+
+
+        $("table tr:gt(" + (veriSayisi - 1) + ")").hide();
+
+
+        var sayfaSayisi = Math.ceil(toplamLi / veriSayisi);
+
+
+        for (var i = 1; i <= sayfaSayisi; i++) {
+            $("#sayfalama").append('<a class="jsgrid-pager-page" href="javascript:void(0)">' + i + '</a>');
+
+        }
+        $("#sayfalama a:first").addClass("aktiv");
+
+        $("#sayfalama a").click(function () {
+            var indis = $(this).index() + 1;
+            var gt = veriSayisi * indis;
+            $("#sayfalama a").removeClass("aktiv");
+            $(this).addClass("aktiv");
+            $("#liste >tbody >tr").hide();
+            for (i = gt - veriSayisi; i < gt; i++) {
+                $("table tr:eq(" + i + ")").show();
+            }
+
+
+        });
+
+    });
+
+</script>*@
+
 
 
 

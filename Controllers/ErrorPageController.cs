@@ -10,10 +10,6 @@ namespace Test_AdminPanel.Controllers
     [AllowAnonymous]
     public class ErrorPageController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
         
         public IActionResult Error1(int code)
         {

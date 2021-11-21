@@ -44,6 +44,18 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Elmah.Io.AspNetCore": {
+              "target": "Package",
+              "version": "[4.0.30, )"
+            },
+            "ElmahCore": {
+              "target": "Package",
+              "version": "[2.0.7, )"
+            },
+            "ElmahCore.Sql": {
+              "target": "Package",
+              "version": "[2.0.7, )"
+            },
             "FluentValidation": {
               "target": "Package",
               "version": "[10.3.3, )"

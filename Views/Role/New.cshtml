@@ -1,5 +1,4 @@
-﻿
-@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+﻿@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
 @addTagHelper *, AuthoringTagHelpersusi
 
 @{
@@ -13,37 +12,43 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<h1 style="text-align:center;"> Add New user</h1>
+<h1 style="text-align:center;"> Add New Role</h1>
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Add New Role</h3>
 
-<form method="post" asp-action="New" asp-controller="Role">
-    <table id="example" class="table table-striped" style="width:100%">
-        <thead>
-           
-        </thead>
-        <tbody>
-
-            <tr>
-                <td>
-                    <label asp-for="RoleID" class="control-label"></label>
-                    <input asp-for="RoleID" class="form-control" />
-                    <span asp-validation-for="RoleID" class="text-danger"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-
-                    <label asp-for="RoleName" class="control-label"></label>
-                    <input asp-for="RoleName" class="form-control" />
-                    <span asp-validation-for="RoleName" class="text-danger"></span>
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    <button class="btn btn-outline-success" type="submit">Save</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</form>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+  
+    <div class="card-body">
+        <div style="position: relative; height: auto; width: 100%;">
+            <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                <form method="post" asp-action="New" asp-controller="Role">
+                    <table id="example" class="table table-striped" style="width:100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label asp-for="RoleName" class="control-label"></label>
+                                    <input asp-for="RoleName" class="form-control" />
+                                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="btn btn-outline-success" type="submit">Save</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
